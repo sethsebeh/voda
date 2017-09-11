@@ -1,0 +1,33 @@
+target/generated-sources/
+target/maven-archiver
+target/classes/
+target/endorsed/
+surefire/
+test-classes/
+build.xml
+pom.xml
+nb-configuration.xml
+
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

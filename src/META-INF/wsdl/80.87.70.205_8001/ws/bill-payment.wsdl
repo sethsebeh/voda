@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://vodafone/bill/bill-payment-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://vodafone.com/bills/payment-gateway" targetNamespace="http://vodafone.com/bills/payment-gateway">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://vodafone/bill/bill-payment-service" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://vodafone/bill/bill-payment-service">
+
+    <xs:element name="getCustomerInfoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCustomerInfoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customer" type="tns:customer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="customer">
+        <xs:sequence>
+            <xs:element name="customerName" type="xs:string"/>
+            <xs:element name="customerNo" type="xs:string"/>
+            <xs:element name="accountName" type="xs:string"/>
+            <xs:element name="accountNo" type="xs:string"/>
+            <xs:element name="billingAccount" type="xs:string"/>
+            <xs:element name="paymentMode" type="xs:string"/>
+            <xs:element name="paymentModeId" type="xs:string"/>
+            <xs:element name="customerCategory" type="xs:string"/>
+            <xs:element name="accountType" type="xs:string"/>
+            <xs:element name="offerName" type="xs:string"/>
+            <xs:element name="offerNameId" type="xs:string"/>
+            <xs:element name="monthlyChargeFee" type="xs:string"/>
+            <xs:element name="installationFee" type="xs:string"/>
+            <xs:element name="resultCode" type="xs:string"/>
+            <xs:element name="resultDescr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getBalanceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBalanceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="balance" type="tns:balance"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="balance">
+        <xs:sequence>
+            <xs:element name="accountKey" type="xs:string"/>
+            <xs:element name="totalAmount" type="xs:string"/>
+            <xs:element name="creditAmount" type="xs:string"/>
+            <xs:element name="usageAmount" type="xs:string"/>
+            <xs:element name="remainingAmount" type="xs:string"/>
+            <xs:element name="resultCode" type="xs:string"/>
+            <xs:element name="resultDescr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getOutStandingRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOutStandingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="outstanding" type="tns:outstanding"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="outstanding">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="billCycle">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="billCycleID" type="xs:string"/>
+                        <xs:element name="billCycleBeginTime" type="xs:string"/>
+                        <xs:element name="billCycleEndTime" type="xs:string"/>
+                        <xs:element name="outStandingAmount" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="totalOutStandingAmount" type="xs:string"/>
+            <xs:element name="resultCode" type="xs:string"/>
+            <xs:element name="resultDescr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>  
+
+    <xs:element name="getUnBilledRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUnBilledResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="unBilled" type="tns:unBilled"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="unBilled">
+        <xs:sequence>
+            <xs:element name="unBilledBalance" type="xs:string"/>
+            <xs:element name="resultCode" type="xs:string"/>
+            <xs:element name="resultDescr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="doDepositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountNo" nillable="false" type="xs:string"/>
+                <xs:element name="operatorCode" nillable="false" type="xs:string"/>
+                <xs:element name="amount" nillable="false" type="xs:string"/>
+                <xs:element name="reference" nillable="false" type="xs:string"/>
+                <xs:element name="depositType" nillable="false" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="doDepositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deposit" type="tns:deposit"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="deposit">
+        <xs:sequence>
+            <xs:element name="clientReference" type="xs:string"/>
+            <xs:element name="oldBalance" type="xs:string"/>
+            <xs:element name="newBalance" type="xs:string"/>
+            <xs:element name="resultCode" type="xs:string"/>
+            <xs:element name="resultDescr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="doPaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountNo" nillable="false" type="xs:string"/>
+                <xs:element name="operatorCode" nillable="false" type="xs:string"/>
+                <xs:element name="amount" nillable="false" type="xs:string"/>
+                <xs:element name="reference" nillable="false" type="xs:string"/>
+                <xs:element name="paymentMode" nillable="false" type="xs:string"/>
+<!--                <xs:element name="bankCode" type="xs:string" nillable="true"/>
+                <xs:element name="cheque" type="xs:string" nillable="true"/>-->
+<!--                <xs:element name="accountNo" type="xs:string" minOccurs="1" />
+                <xs:element name="operatorCode" type="xs:string" minOccurs="1"  />
+                <xs:element name="amount" type="xs:string" minOccurs="1" />
+                <xs:element name="reference" type="xs:string" minOccurs="1"  />
+                <xs:element name="paymentMode" type="xs:string"  minOccurs="1"  />--> 
+                 <xs:element maxOccurs="unbounded" minOccurs="0" name="bankCode" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="cheque" type="xs:string"/>
+                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="doPaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="payment" type="tns:payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="payment">
+        <xs:sequence>
+            <xs:element name="clientReference" type="xs:string"/>
+            <xs:element name="oldBalance" type="xs:string"/>
+            <xs:element name="newBalance" type="xs:string"/>
+            <xs:element name="resultCode" type="xs:string"/>
+            <xs:element name="resultDescr" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="depositReasonCode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BUNDLEDEPOSIT"/>
+            <xs:enumeration value="DATADEPOSIT"/>
+            <xs:enumeration value="IDDDEPOSIT"/>
+            <xs:enumeration value="LOCALCALLDEPOSIT"/>
+            <xs:enumeration value="SECURITYDEPOSIT"/>
+            <xs:enumeration value="ROAMINGDEPOSIT"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getOutStandingRequest">
+    <wsdl:part element="sch:getOutStandingRequest" name="getOutStandingRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doPaymentResponse">
+    <wsdl:part element="sch:doPaymentResponse" name="doPaymentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnBilledResponse">
+    <wsdl:part element="sch:getUnBilledResponse" name="getUnBilledResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCustomerInfoResponse">
+    <wsdl:part element="sch:getCustomerInfoResponse" name="getCustomerInfoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doDepositResponse">
+    <wsdl:part element="sch:doDepositResponse" name="doDepositResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOutStandingResponse">
+    <wsdl:part element="sch:getOutStandingResponse" name="getOutStandingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnBilledRequest">
+    <wsdl:part element="sch:getUnBilledRequest" name="getUnBilledRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doPaymentRequest">
+    <wsdl:part element="sch:doPaymentRequest" name="doPaymentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doDepositRequest">
+    <wsdl:part element="sch:doDepositRequest" name="doDepositRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBalanceRequest">
+    <wsdl:part element="sch:getBalanceRequest" name="getBalanceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCustomerInfoRequest">
+    <wsdl:part element="sch:getCustomerInfoRequest" name="getCustomerInfoRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBalanceResponse">
+    <wsdl:part element="sch:getBalanceResponse" name="getBalanceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CustomersPort">
+    <wsdl:operation name="getOutStanding">
+      <wsdl:input message="tns:getOutStandingRequest" name="getOutStandingRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getOutStandingResponse" name="getOutStandingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doPayment">
+      <wsdl:input message="tns:doPaymentRequest" name="doPaymentRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:doPaymentResponse" name="doPaymentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUnBilled">
+      <wsdl:input message="tns:getUnBilledRequest" name="getUnBilledRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getUnBilledResponse" name="getUnBilledResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCustomerInfo">
+      <wsdl:input message="tns:getCustomerInfoRequest" name="getCustomerInfoRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getCustomerInfoResponse" name="getCustomerInfoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doDeposit">
+      <wsdl:input message="tns:doDepositRequest" name="doDepositRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:doDepositResponse" name="doDepositResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBalance">
+      <wsdl:input message="tns:getBalanceRequest" name="getBalanceRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getBalanceResponse" name="getBalanceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomersPortSoap11" type="tns:CustomersPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getOutStanding">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOutStandingRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOutStandingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doPayment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="doPaymentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="doPaymentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUnBilled">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUnBilledRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUnBilledResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCustomerInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getCustomerInfoRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCustomerInfoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doDeposit">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="doDepositRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="doDepositResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBalance">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getBalanceRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getBalanceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomersPortService">
+    <wsdl:port binding="tns:CustomersPortSoap11" name="CustomersPortSoap11">
+      <soap:address location="https://80.87.70.205:8001/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

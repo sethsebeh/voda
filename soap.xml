@@ -1,0 +1,1 @@
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><S:Body><getCustomerInfoRequest xmlns="http://vodafone/bill/bill-payment-service"><accountId>test3</accountId></getCustomerInfoRequest></S:Body></S:Envelope>

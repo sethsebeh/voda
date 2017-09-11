@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="https://80.87.70.205:8001/ws/bill-payment.wsdl" uri="wsdl/80.87.70.205_8001/ws/bill-payment.wsdl"/>
+</catalog>
